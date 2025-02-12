@@ -1,0 +1,84 @@
+console.log('start')
+
+new Promise((resolve , reject)=>{
+    console.log('inisde promise')
+    //resolve("33")
+})
+ans.then((res)=>{
+    console.log(res);
+}).catch((err)=>{
+    console.error(err)
+}).finally(()=>{
+    console.log('idk')
+})
+console.log('end')
+function firstPromise(str){
+    if(str==='first'){
+        console.log('here')
+        return new Promise ((resolve, reject)=>{
+            console.log('in first')
+            resolve(secondPromise('done'));
+        })
+    }
+}
+
+function secondPromise(str){
+    if(str==='done'){
+        console.log('been here')
+        return new Promise((resolve, reject)=>{
+            resolve(str);
+        })
+    }
+  else{
+        return new Promise((resolve ,reject)=>{
+            console.log('first entry')
+            resolve(str);
+        })
+  }
+    
+}
+
+const ans = secondPromise('first');
+ans.then((data)=>{
+    console.log(data)
+     return firstPromise(data);
+}).then((data)=>{
+    console.log(data)
+})
+
+function promise1(str){
+    return new Promise((resolve, reject)=>{
+        resolve(str)
+    })
+}
+function promise2(str){
+    return new Promise((resolve, reject)=>{
+        resolve(str)
+    })
+}
+function promise3(str){
+    return new Promise((resolve, reject)=>{
+        resolve(str)
+    })
+}
+
+function recPromise(promiseArray){
+    if(promiseArray.length===0)return;
+    const curretones = promiseArray.shift();
+    curretones.then((data)=>{
+        console.log(data)
+    }).catch((err)=>{
+        console.error(err)
+    })
+    recPromise(promiseArray);
+}
+recPromise([promise1('i'), promise2('am'), promise3('Abhijit')]);
+
+function debouncing(onClick){
+    cnt1++;
+    clearTimeout(time);
+    const time=setTimeout(()=>{
+        fetch('/api')
+        cnt++;
+    },800)
+}
