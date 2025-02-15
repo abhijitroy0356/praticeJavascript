@@ -1,0 +1,67 @@
+html / js
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" placeholder="title" id="1st"/><br/>
+    <input type="text" placeholder="description" id="2nd"/><br>
+    <button onclick="addtodo()">add todo</button>
+    <div id="container">
+       
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
+
+
+
+//const outerDiv= document.createElement('div')
+let id = 1;
+function markeddone(id){
+    let div = document.getElementById(id)
+    if(div.innerText==='Done'){
+    
+        let newDiv=document.createElement('p')
+        newDiv.innerText="it is done already"
+        div.appendChild(newDiv)
+        
+    }
+    else{
+        div.innerText='Done'
+        
+    }
+    
+}
+function create(fistline, secondline, id){
+    let parent = document.createElement('div');
+    let firstline= document.createElement('div')
+    firstline.innerHTML=fistline
+    let secondLine= document.createElement('div')
+    secondLine.innerHTML=secondline
+    let button= document.createElement('button');
+    button.innerHTML='mark as done'
+    button.setAttribute('id',`${id}`)
+    button.setAttribute('onclick',`markeddone(${id})`)
+    parent.appendChild(firstline)
+    parent.appendChild(secondLine)
+    parent.appendChild(button)
+    return parent
+}
+let ans;
+function addtodo(){
+    let firstNum = document.getElementById('1st').value
+    let secondNum = document.getElementById('2nd').value
+    let placetoShow = document.getElementById('container')
+    placetoShow.appendChild(create(firstNum, secondNum, id++))
+}
+
+function check(){
+    let bttn= document.getElementById('btn')
+    bttn.innerHTML='done'
+}
