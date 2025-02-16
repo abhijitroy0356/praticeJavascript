@@ -1,0 +1,20 @@
+// Reconcilers in React
+
+let state={
+    counter:0
+}
+
+function counter(   ){
+    state.counter++;
+    updatecount()
+}
+
+function updatecount(){
+    const button =document.getElementById('btncount')
+    button.innerHTML=""
+    const newBtn=document.createElement('button')
+    newBtn.innerHTML=`curent count ${state.counter}`
+    newBtn.setAttribute('onclick',`counter()`)
+    button.appendChild(newBtn)
+}
+updatecount()
